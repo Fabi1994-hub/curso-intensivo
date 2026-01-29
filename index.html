@@ -3,385 +3,602 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domina el Negocio de los Cursos Digitales</title>
+    <title>NEXUS MELIAN: Amor Eterno</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- VARIABLES Y RESET --- */
         :root {
-            --primary-color: #0f2c59; /* Azul marino profundo - Autoridad */
-            --secondary-color: #dac0a3; /* Beige suave - Acento elegante */
-            --accent-color: #b31312; /* Rojo ladrillo - Para CTAs (Llamadas a la acción) */
-            --text-color: #333333;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
-            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            --font-serif: 'Georgia', serif; /* Toque editorial/empresarial */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --neon-cyan: #00f3ff;
+            --neon-pink: #ff0055;
+            --neon-purple: #bd00ff;
+            --deep-space: #020408;
+            --glass-border: rgba(0, 243, 255, 0.5);
         }
 
         body {
-            font-family: var(--font-main);
-            color: var(--text-color);
-            line-height: 1.6;
-            background-color: var(--white);
+            margin: 0;
+            overflow: hidden;
+            background-color: var(--deep-space);
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--neon-cyan);
         }
 
-        a { text-decoration: none; }
-        ul { list-style: none; }
-
-        /* --- TIPOGRAFÍA --- */
-        h1, h2, h3 {
-            font-family: var(--font-serif);
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.2; }
-        h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; }
-        h3 { font-size: 1.5rem; }
-
-        p { margin-bottom: 1rem; font-size: 1.1rem; }
-
-        /* --- UTILIDADES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: background 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #8f0f0e;
-        }
-
-        .section-padding { padding: 80px 0; }
-
-        /* --- HEADER --- */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        /* --- FONDO Y AMBIENTE --- */
+        #canvas-layer {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 1000;
+            left: 0;
+            z-index: 0;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
+            background-size: 100% 3px;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0.4;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-family: var(--font-serif);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(rgba(15, 44, 89, 0.9), rgba(15, 44, 89, 0.8)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-            margin-top: 70px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 { color: var(--white); font-size: 3rem; }
-        .hero p { font-size: 1.3rem; margin-bottom: 2rem; color: #e0e0e0; }
-        
-        .price-tag {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        /* --- ABOUT / PROBLEM --- */
-        .intro {
-            background-color: var(--bg-light);
-            text-align: center;
-        }
-
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            text-align: left;
-        }
-
-        .intro-img img {
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-radius: 4px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            height: 100%;
+            background: radial-gradient(circle, transparent 60%, #000 100%);
+            z-index: 1;
+            pointer-events: none;
         }
 
-        /* --- MODULES / TEMARIO --- */
-        .modules {
-            background-color: var(--white);
-        }
-
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .module-card {
-            background: var(--white);
-            border: 1px solid #e1e1e1;
-            padding: 30px;
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.3s;
-        }
-
-        .module-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-        }
-
-        .module-number {
-            font-size: 0.9rem;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        /* --- GLOBAL REACH --- */
-        .global {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-        }
-        
-        .global h2 { color: var(--white); }
-
-        .stat-grid {
+        /* --- CONTENEDOR HUD --- */
+        .hud-wrapper {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            width: 100vw;
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 30px;
+            align-items: center;
+            justify-content: center;
         }
 
-        .stat-item {
-            margin: 20px;
-        }
-        .stat-number { font-size: 3rem; font-weight: bold; color: var(--secondary-color); display: block;}
-        .stat-label { font-size: 1rem; text-transform: uppercase; }
-
-        /* --- PRICING & CTA --- */
-        .pricing {
-            text-align: center;
-            background-color: var(--bg-light);
-        }
-
-        .price-box {
-            background: var(--white);
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 50px;
-            border: 1px solid #ddd;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .interface-panel {
+            position: relative;
+            width: 90%;
+            max-width: 650px;
+            background: rgba(2, 8, 16, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.1);
+            padding: 2.5rem;
+            clip-path: polygon(
+                30px 0, 100% 0, 100% calc(100% - 30px), 
+                calc(100% - 30px) 100%, 0 100%, 0 30px
+            );
+            transition: all 0.5s;
         }
 
-        .price-large {
-            font-size: 4rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            font-family: var(--font-serif);
+        /* Borde animado */
+        .interface-panel::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), transparent, var(--neon-pink), transparent);
+            z-index: -1;
+            clip-path: polygon(
+                30px 0, 100% 0, 100% calc(100% - 30px), 
+                calc(100% - 30px) 100%, 0 100%, 0 30px
+            );
+            animation: border-glow 4s linear infinite;
         }
 
-        .price-details {
-            margin: 20px 0;
-            text-align: left;
+        @keyframes border-glow {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
         }
 
-        .price-details li {
-            margin-bottom: 10px;
-            padding-left: 20px;
+        /* --- TEXTOS --- */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 4px;
+            background: linear-gradient(to right, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .data-stream {
+            min-height: 100px;
+            background: rgba(0, 0, 0, 0.6);
+            border-left: 3px solid var(--neon-pink);
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: #fff;
+            text-shadow: 0 0 8px var(--neon-pink);
+            font-family: 'Rajdhani', monospace;
             position: relative;
         }
 
-        .price-details li::before {
-            content: "✓";
-            color: green;
+        /* --- MONITOR CARDIACO --- */
+        .heart-rate-container {
+            height: 40px;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ecg-line {
             position: absolute;
+            top: 50%;
             left: 0;
-            font-weight: bold;
+            width: 100%;
+            height: 2px;
+            background: transparent;
+            overflow: hidden;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #1a1a1a;
-            color: #888;
-            text-align: center;
-            padding: 40px 0;
+        .ecg-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, transparent 80%, var(--neon-pink) 90%, transparent 100%);
+            animation: ecg-scan 2s infinite linear;
+        }
+
+        /* Simulación visual de onda */
+        .heart-icon-small {
+            animation: beat 1s infinite;
+            margin-right: 10px;
+            color: var(--neon-pink);
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+        
+        @keyframes ecg-scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* --- BOTONES --- */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .cyber-btn {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--neon-cyan);
+            padding: 12px;
+            font-family: 'Orbitron', sans-serif;
             font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .intro-grid { grid-template-columns: 1fr; }
-            .price-box { padding: 30px 20px; }
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0; height: 100%;
+            background: var(--neon-cyan);
+            opacity: 0.1;
+            transition: width 0.3s;
         }
+
+        .cyber-btn:hover::before { width: 100%; }
+        .cyber-btn:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- BOTÓN NÚCLEO --- */
+        .core-container {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reactor-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(189, 0, 255, 0.2), transparent 70%);
+            border: 2px solid var(--neon-pink);
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 30px var(--neon-pink);
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+        }
+
+        .reactor-btn svg {
+            width: 50px;
+            fill: #fff;
+            filter: drop-shadow(0 0 10px #fff);
+            animation: pulse-core 2s infinite;
+        }
+
+        @keyframes pulse-core {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+
+        .reactor-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed rgba(189, 0, 255, 0.6);
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- EFECTOS SALTO --- */
+        .white-flash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; opacity: 0; pointer-events: none; z-index: 200;
+            transition: opacity 0.2s;
+        }
+        .flash-active { opacity: 1; }
+
+        /* Palabras subliminales */
+        #subliminal-layer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            pointer-events: none; z-index: 90;
+        }
+        .subliminal-word {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10vw;
+            color: rgba(255, 255, 255, 0.1);
+            font-weight: 900;
+            position: absolute;
+            opacity: 0;
+        }
+
+        /* --- MENSAJE FINAL --- */
+        #final-msg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; opacity: 0; pointer-events: none;
+            background: rgba(0,0,0,0.9);
+            transition: opacity 1s;
+        }
+
+        .mega-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 7vw;
+            text-align: center;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--neon-cyan);
+            letter-spacing: 6px;
+            position: relative;
+            filter: drop-shadow(0 0 15px var(--neon-cyan));
+        }
+
+        .mega-text::before {
+            content: attr(data-text);
+            position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+            color: var(--neon-pink); opacity: 0.5; -webkit-text-stroke: 0;
+            animation: glitch-anim 3s infinite linear alternate-reverse;
+        }
+
+        .mega-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 300;
+            font-size: 2vw;
+            color: #fff;
+            letter-spacing: 12px;
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0;
+            animation: fade-up 1s ease-out forwards 1s;
+        }
+
+        /* Utilidades */
+        .hidden-ui { opacity: 0; transform: scale(0.9); pointer-events: none; }
+        .visible-ui { opacity: 1; pointer-events: auto; }
+        @keyframes glitch-anim {
+            0% { clip-path: polygon(0 10%, 100% 10%, 100% 30%, 0 30%); transform: translate(-4px, 2px); }
+            20% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); transform: translate(4px, -2px); }
+            100% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); transform: translate(-2px, 0); }
+        }
+        @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
     </style>
 </head>
 <body>
 
-    <!-- NAVEGACIÓN -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">DigitalExpert</div>
-                <!-- BOTÓN HEADER CON LINK HOTMART -->
-                <a href="https://go.hotmart.com/N103942095R?dp=1" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Inscribirse</a>
-            </nav>
-        </div>
-    </header>
+    <!-- Capas de Fondo -->
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <canvas id="canvas-layer"></canvas>
+    <div id="flash-overlay" class="white-flash"></div>
+    
+    <!-- Capa Subliminal -->
+    <div id="subliminal-layer">
+        <span id="sub-word" class="subliminal-word">AMOR</span>
+    </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="container hero-content">
-            <span class="price-tag">Oferta Limitada: $10 USD</span>
-            <h1>Convierte tu Conocimiento en un Activo Digital Rentable</h1>
-            <p>Aprende la metodología exacta para crear, alojar y vender cursos digitales a una audiencia global. Sin tecnicismos complejos.</p>
-            <!-- BOTÓN HERO CON LINK HOTMART -->
-            <a href="https://go.hotmart.com/N103942095R?dp=1" target="_blank" class="btn">Comenzar Ahora</a>
-        </div>
-    </section>
-
-    <!-- INTRODUCCIÓN / PROBLEMA -->
-    <section class="section-padding intro">
-        <div class="container">
-            <div class="intro-grid">
-                <div class="intro-text">
-                    <h2>El Mercado Global te Espera</h2>
-                    <p>Internet ha eliminado las fronteras. Hoy, tu conocimiento puede ser vendido en España, México, Colombia y Estados Unidos simultáneamente, mientras duermes.</p>
-                    <p>Este curso no es sobre "hacerse rico rápido". Es un programa empresarial estructurado que te enseña a:</p>
-                    <ul>
-                        <li>• Identificar nichos de mercado rentables.</li>
-                        <li>• Estructurar un plan de estudios pedagógico.</li>
-                        <li>• Automatizar el proceso de venta y entrega.</li>
-                    </ul>
+    <!-- UI Principal -->
+    <div id="ui-layer" class="hud-wrapper visible-ui">
+        <div class="interface-panel">
+            <div class="flex justify-between items-end border-b border-cyan-800 pb-3 mb-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold">NEXUS MELIAN</h1>
+                    <span class="text-xs text-cyan-400 tracking-[0.3em]">CONEXIÓN ESTABLECIDA</span>
                 </div>
-                <div class="intro-img">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Espacio de trabajo profesional">
+                <div class="text-right">
+                    <span class="text-xs text-pink-500 animate-pulse">● EN LÍNEA</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- TEMARIO DEL CURSO -->
-    <section class="section-padding modules">
-        <div class="container">
-            <h2>Estructura del Programa</h2>
-            <div class="module-grid">
-                <div class="module-card">
-                    <span class="module-number">Módulo 1</span>
-                    <h3>Validación de Mercado</h3>
-                    <p>Cómo encontrar una idea que la gente ya esté buscando y dispuesta a pagar. Análisis de competencia y definición del avatar.</p>
-                </div>
-                <div class="module-card">
-                    <span class="module-number">Módulo 2</span>
-                    <h3>Producción Ágil</h3>
-                    <p>Crea contenido de alta calidad con herramientas accesibles. Grabación, edición básica y estructuración de módulos.</p>
-                </div>
-                <div class="module-card">
-                    <span class="module-number">Módulo 3</span>
-                    <h3>Plataformas de Venta</h3>
-                    <p>Configuración técnica paso a paso. Pasarelas de pago internacionales (Stripe, PayPal) y entrega automática del producto.</p>
-                </div>
-                <div class="module-card">
-                    <span class="module-number">Módulo 4</span>
-                    <h3>Estrategia de Lanzamiento</h3>
-                    <p>Cómo conseguir tus primeros 100 alumnos sin gastar una fortuna en publicidad. Email marketing y redes sociales.</p>
+            <!-- Monitor Cardiaco -->
+            <div class="heart-rate-container">
+                <svg class="heart-icon-small w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <div class="text-xs text-pink-400 font-mono mr-4">RITMO: 120 BPM</div>
+                <div class="flex-grow relative h-full">
+                    <div class="absolute top-1/2 w-full h-[1px] bg-pink-900"></div>
+                    <!-- Línea svg simple para el EKG -->
+                    <svg height="40" width="100%" class="absolute top-0 left-0">
+                        <polyline points="0,20 50,20 60,10 70,30 80,10 90,20 150,20 160,5 170,35 180,20 300,20" 
+                                  fill="none" stroke="rgba(255, 0, 85, 0.5)" stroke-width="1.5" />
+                    </svg>
+                    <div class="ecg-line"></div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ALCANCE GLOBAL -->
-    <section class="section-padding global">
-        <div class="container">
-            <h2>Resultados Reales, Alcance Internacional</h2>
-            <div class="stat-grid">
-                <div class="stat-item">
-                    <span class="stat-number">+100%</span>
-                    <span class="stat-label">Margen de Ganancia</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Ventas Automatizadas</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">Global</span>
-                    <span class="stat-label">Sin Costos de Envío</span>
-                </div>
+            <div id="output-screen" class="data-stream">
+                <span id="text-target">SISTEMA ESPERANDO INSTRUCCIÓN...</span>
+            </div>
+
+            <div class="btn-grid">
+                <button onclick="decryptText('razones')" class="cyber-btn">ACCESO: RAZONES</button>
+                <button onclick="decryptText('momentos')" class="cyber-btn">ARCHIVO: RECUERDOS</button>
+                <button onclick="decryptText('futuro')" class="cyber-btn">PROYECCIÓN: FUTURO</button>
+                <button onclick="decryptText('poema')" class="cyber-btn">CÓDIGO: POESÍA</button>
+            </div>
+
+            <div class="core-container">
+                <p class="text-[10px] text-cyan-300 tracking-[0.4em] mb-4 uppercase">Iniciar Convergencia</p>
+                <button onclick="engageSingularity()" class="reactor-btn" aria-label="Activar Amor">
+                    <div class="reactor-particles"></div>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- PRICING / CTA FINAL -->
-    <section id="comprar" class="section-padding pricing">
-        <div class="container">
-            <div class="price-box">
-                <h2>Inversión Única</h2>
-                <p>Acceso de por vida al contenido y futuras actualizaciones.</p>
-                <div class="price-large">$10 USD</div>
-                <ul class="price-details">
-                    <li>Acceso inmediato a los 4 módulos de video.</li>
-                    <li>Plantillas descargables de planificación.</li>
-                    <li>Guía de herramientas gratuitas para creadores.</li>
-                    <li>Certificado de finalización.</li>
-                </ul>
-                <!-- BOTÓN PRECIO CON LINK HOTMART -->
-                <a href="https://go.hotmart.com/N103942095R?dp=1" target="_blank" class="btn" style="width: 100%;">Comprar Curso Ahora</a>
-                <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">Garantía de devolución de 7 días. Pago 100% seguro.</p>
-            </div>
+    <!-- Mensaje Final -->
+    <div id="final-msg">
+        <div class="holo-text-container" id="holo-container">
+            <div class="mega-text" data-text="MELIAN TE AMO">MELIAN<br>TE AMO</div>
+            <div class="mega-subtitle">ERES MI CONSTANTE UNIVERSAL</div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 DigitalExpert. Todos los derechos reservados.</p>
-            <p style="margin-top: 10px;">Aviso Legal | Política de Privacidad | Términos de Uso</p>
-        </div>
-    </footer>
+    <script>
+        // --- BASE DE DATOS ---
+        const database = {
+            razones: ["Eres la excepción a todas mis reglas.", "Iluminas mis días oscuros como una supernova.", "Amo tu mente brillante y tu alma noble.", "Porque contigo, el silencio es cómodo."],
+            momentos: ["Recuerdo cada detalle de nuestra primera cita.", "Esa vez que reímos hasta que nos dolió el estómago.", "Cuando me miraste y supe que eras tú.", "Cada abrazo tuyo recarga mi energía."],
+            futuro: ["Veo mil amaneceres despertando a tu lado.", "Construiremos un imperio de recuerdos felices.", "Tú, yo y un pasaporte lleno de sellos.", "No importa dónde, siempre que sea contigo."],
+            poema: ["En el código del universo, tú eres mi línea favorita.", "Mis átomos aman a tus átomos.", "Eres la poesía que mi corazón intenta escribir.", "Fuiste, eres y serás mi elección."]
+        };
 
+        // --- EFECTO DE TEXTO ---
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const targetElement = document.getElementById("text-target");
+        let interval = null;
+
+        function decryptText(category) {
+            const phrases = database[category];
+            const text = phrases[Math.floor(Math.random() * phrases.length)];
+            let iteration = 0;
+            clearInterval(interval);
+            interval = setInterval(() => {
+                targetElement.innerText = text.split("").map((letter, index) => {
+                    if(index < iteration) return text[index];
+                    return letters[Math.floor(Math.random() * letters.length)];
+                }).join("");
+                if(iteration >= text.length) clearInterval(interval);
+                iteration += 1/2;
+            }, 30);
+        }
+
+        // --- MOTOR DE PARTÍCULAS (AGUJERO NEGRO/VÓRTICE) ---
+        const canvas = document.getElementById('canvas-layer');
+        const ctx = canvas.getContext('2d');
+        let width, height, centerX, centerY;
+        let stars = [];
+        let mode = 'normal'; // normal, warp, singularity
+        let rotation = 0;
+
+        function initStars() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+            canvas.width = width;
+            canvas.height = height;
+            stars = [];
+            const count = 800;
+            for(let i=0; i<count; i++) {
+                stars.push({
+                    x: Math.random() * width - centerX,
+                    y: Math.random() * height - centerY,
+                    z: Math.random() * width,
+                    o: Math.random() // offset
+                });
+            }
+        }
+
+        function draw() {
+            // Fondo con rastro
+            ctx.fillStyle = mode === 'singularity' ? 'rgba(0,0,0,0.3)' : 'rgba(2, 4, 8, 0.5)';
+            ctx.fillRect(0, 0, width, height);
+
+            if (mode === 'singularity') rotation += 0.02; // Rotar todo el canvas
+
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            if (mode === 'singularity') ctx.rotate(rotation);
+
+            let speedBase = mode === 'normal' ? 2 : (mode === 'warp' ? 50 : 20);
+
+            stars.forEach(star => {
+                // Lógica de movimiento
+                if(mode === 'singularity') {
+                    // Espiral hacia el centro
+                    star.z -= speedBase;
+                    let angle = Math.atan2(star.y, star.x);
+                    angle += 0.05; // Girar hacia adentro
+                    let radius = Math.sqrt(star.x*star.x + star.y*star.y);
+                    radius *= 0.99; // Contraer radio
+                    star.x = Math.cos(angle) * radius;
+                    star.y = Math.sin(angle) * radius;
+                } else {
+                    star.z -= speedBase;
+                }
+
+                // Reset estrella
+                if(star.z <= 0 || (mode === 'singularity' && Math.abs(star.x) < 5)) {
+                    star.z = width;
+                    star.x = Math.random() * width - centerX;
+                    star.y = Math.random() * height - centerY;
+                }
+
+                // Proyección
+                let x = (star.x / star.z) * width;
+                let y = (star.y / star.z) * height;
+                let size = (1 - star.z / width) * (mode === 'warp' ? 4 : 2.5);
+                let alpha = (1 - star.z / width);
+
+                // Dibujar
+                ctx.beginPath();
+                let color = mode === 'singularity' ? `255, 0, 85` : `0, 243, 255`; // Cambio de color a rosa en vórtice
+
+                if (mode === 'warp') {
+                    // Rayos
+                    let prevZ = star.z + speedBase * 1.5;
+                    let prevX = (star.x / prevZ) * width;
+                    let prevY = (star.y / prevZ) * height;
+                    ctx.strokeStyle = `rgba(${color}, ${alpha})`;
+                    ctx.lineWidth = size;
+                    ctx.moveTo(prevX, prevY);
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                } else {
+                    // Puntos
+                    ctx.fillStyle = `rgba(${color}, ${alpha})`;
+                    ctx.arc(x, y, size, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            });
+
+            ctx.restore();
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', initStars);
+        initStars();
+        draw();
+
+        // --- SECUENCIA DE SINGULARIDAD ---
+        const uiLayer = document.getElementById('ui-layer');
+        const flash = document.getElementById('flash-overlay');
+        const finalMsg = document.getElementById('final-msg');
+        const subWord = document.getElementById('sub-word');
+
+        function flashText(text, delay) {
+            setTimeout(() => {
+                subWord.innerText = text;
+                subWord.style.opacity = 0.8;
+                setTimeout(() => subWord.style.opacity = 0, 200);
+            }, delay);
+        }
+
+        function engageSingularity() {
+            // 1. Ocultar UI
+            uiLayer.classList.remove('visible-ui');
+            uiLayer.classList.add('hidden-ui');
+            
+            // 2. Fase Warp (Aceleración)
+            mode = 'warp';
+            
+            // Mensajes subliminales durante la aceleración
+            flashText("TU", 500);
+            flashText("YO", 1000);
+            flashText("ETERNO", 1500);
+
+            // 3. Fase Vórtice (Singularidad)
+            setTimeout(() => {
+                mode = 'singularity'; // Las estrellas giran y cambian de color
+            }, 2000);
+
+            // 4. Salto Final
+            setTimeout(() => {
+                flash.classList.add('flash-active'); // Pantalla blanca
+                
+                // 5. Aparición Mágica
+                setTimeout(() => {
+                    mode = 'normal';
+                    rotation = 0;
+                    initStars(); // Resetear campo estelar calma
+                    flash.classList.remove('flash-active');
+                    finalMsg.style.opacity = 1;
+                    
+                    // Efecto de subtítulo subiendo
+                    const subtitle = document.querySelector('.mega-subtitle');
+                    subtitle.style.animation = 'none';
+                    subtitle.offsetHeight; /* trigger reflow */
+                    subtitle.style.animation = 'fade-up 1s ease-out forwards 1s';
+                }, 800);
+
+            }, 4500); // Tiempo total de secuencia de viaje
+
+            // 6. Retorno (opcional, largo plazo)
+            setTimeout(() => {
+                finalMsg.style.opacity = 0;
+                setTimeout(() => {
+                    uiLayer.classList.remove('hidden-ui');
+                    uiLayer.classList.add('visible-ui');
+                }, 1000);
+            }, 12000);
+        }
+
+        decryptText('razones'); // Iniciar con un texto
+    </script>
 </body>
 </html>
